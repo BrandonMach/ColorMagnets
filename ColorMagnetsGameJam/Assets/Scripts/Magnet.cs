@@ -9,15 +9,10 @@ public class Magnet : MagnetColor
 
     public List<Rigidbody> MagnetListRB;
     Movement _movementScript;
-    //public enum MagnetColor
-    //{
-    //    Red,
-    //    Blue,
-    //    Yellow,
-    //    Green
-    //}
+  
     [SerializeField] PolarColor _currentColorOfMagnet;
 
+    [SerializeField] GameObject[] _allTheFellas = new GameObject[4];
 
     private void Start()
     {
@@ -28,6 +23,10 @@ public class Magnet : MagnetColor
 
     private void FixedUpdate()
     {
+      
+        
+
+
         if (_movementScript._playerIndex == Movement.PlayerIndex.Player1)
         {
             Player1Controlls();
@@ -76,6 +75,14 @@ public class Magnet : MagnetColor
         if (Input.GetKeyDown(KeyCode.N))
         {
             _currentColorOfMagnet = PolarColor.Red;
+            foreach (var item in _allTheFellas)
+            {
+                item.SetActive(false);
+            }
+            for (int i = 0; i < _allTheFellas.Length; i++)
+            {
+                _allTheFellas[0].SetActive(true);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.H))

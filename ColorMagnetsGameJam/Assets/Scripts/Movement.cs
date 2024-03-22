@@ -14,6 +14,7 @@ public class Movement : MonoBehaviour
     public CharacterController controller;
     [SerializeField] float _speed;
     Vector3 move;
+    
 
     void Start()
     {
@@ -24,6 +25,8 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+
 
 
         if(_playerIndex== PlayerIndex.Player1)
