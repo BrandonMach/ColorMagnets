@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 6677206918622114605}
   - component: {fileID: 6398224180367124852}
   - component: {fileID: 4830448441780448520}
-  - component: {fileID: 7481659766639136186}
-  - component: {fileID: 1598739183362155302}
   m_Layer: 0
   m_Name: magnetBooster_0
   m_TagString: Untagged
@@ -86,33 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7481659766639136186
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1327356589701968048}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 4
-  m_Center: {x: 2.85, y: 0.008666126, z: -1.67}
---- !u!114 &1598739183362155302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1327356589701968048}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cac4ae822d6a2274181ce505098dc33c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ForceFactor: 500
-  barrelsRB: []
 --- !u!1 &4834212009242216519
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,7 +128,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 3.09
+  m_Radius: 5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6325818796058260536
 MonoBehaviour:
@@ -196,12 +167,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5304784683822242351}
-  m_LocalRotation: {x: 0.67141455, y: 0.59047294, z: -0.38404733, w: 0.2303299}
-  m_LocalPosition: {x: -0.02, y: 0.86, z: -0.39}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6677206918622114605}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 130.285, y: 22.141998, z: -72.300995}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
