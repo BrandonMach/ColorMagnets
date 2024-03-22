@@ -72,6 +72,7 @@ public class Magnet : MagnetColor
 
     void Player1Controlls()
     {
+        //Fixa för payer 2 och optimizera
         if (Input.GetKeyDown(KeyCode.N))
         {
             _currentColorOfMagnet = PolarColor.Red;
