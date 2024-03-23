@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
@@ -14,7 +15,42 @@ public class Movement : MonoBehaviour
     public CharacterController controller;
     [SerializeField] float _speed;
     Vector3 move;
-    
+
+
+    [Header("New input system")]
+    public PlayerControls playerControls;
+    private InputAction moveInput;
+
+    private void Awake()
+    {
+        playerControls = new PlayerControls();
+    }
+
+    private void OnEnable()
+    {
+        //playerControls.Enable();
+        switch (_playerIndex)
+        {
+            case PlayerIndex.Player1:
+                moveInput = playerControls.Player1.Move;
+
+                break;
+            case PlayerIndex.Player2:
+                moveInput = playerControls.Player2.Move;
+                break;
+            default:
+                break;
+        }
+        moveInput.Enable();
+
+    }
+
+    private void OnDisable()
+    {
+        moveInput.Disable();
+    }
+
+
 
     void Start()
     {
@@ -22,29 +58,23 @@ public class Movement : MonoBehaviour
         _speed = 10f;
     }
 
+    
+
+
+
+
     // Update is called once per frame
     void Update()
     {
-        
 
 
+   
+        move = new Vector3(moveInput.ReadValue<Vector2>()[0], 0, moveInput.ReadValue<Vector2>()[1]);
 
-        if(_playerIndex== PlayerIndex.Player1)
-        {
-            move = new Vector3(Input.GetAxis("ArrowHorizontal"),0, Input.GetAxis("ArrowVertical"));
-
-           
-        }
-        if (_playerIndex == PlayerIndex.Player2)
-        {
-            move = new Vector3(Input.GetAxis("WASDHorizontal"), 0, Input.GetAxis("WASDVertical"));
-
-            
-        }
 
         controller.Move(move * Time.deltaTime * _speed);
-        //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(move), 0.75f);
 
+        //Rotate towards move direction
         if(move != Vector3.zero)
         {
             //transform.forward = move;
@@ -54,6 +84,8 @@ public class Movement : MonoBehaviour
 
     }
 
+
+    //reduce speed with more barrels
     public void ReduceSpeed(float newSpeed)
     {
         if(newSpeed > 3)

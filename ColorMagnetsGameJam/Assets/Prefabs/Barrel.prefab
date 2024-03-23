@@ -129,7 +129,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.3126708, z: 1}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &610215844679154006
 Rigidbody:
@@ -139,7 +139,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4073024690183904215}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 2
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -162,6 +162,7 @@ MonoBehaviour:
   player: {fileID: 0}
   offset: {x: 0, y: 0, z: 0}
   PickedUp: 0
+  BarrelColor: 0
   materials:
   - {fileID: 2100000, guid: 72ff9cd59def1d7448c809b2b7ec3319, type: 2}
   - {fileID: 2100000, guid: 45f14284a1f268545b186095188a14dd, type: 2}
