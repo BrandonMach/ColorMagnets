@@ -842,6 +842,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""QuickTurn"",
+                    ""type"": ""Button"",
+                    ""id"": ""5754be90-1af7-481d-bee4-d61a65805564"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -943,6 +952,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""ChangeMagnetColorToGreen"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""93676ea4-d8c2-4e17-8323-627a72dae880"",
+                    ""path"": ""<Keyboard>/numpad3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""QuickTurn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -990,6 +1010,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": ""ChangeMagnetColorToGreen"",
                     ""type"": ""Button"",
                     ""id"": ""e1261307-22a0-4dba-a9cc-031e1727cf82"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""QuickTurn"",
+                    ""type"": ""Button"",
+                    ""id"": ""a06739e8-6a69-4e6c-b683-105c0572cd2a"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1095,6 +1124,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""ChangeMagnetColorToGreen"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b22541fa-6e20-47ae-b6e3-c259bb8d5b7b"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""QuickTurn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1186,6 +1226,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player2_ChangeMagnetColorToBlue = m_Player2.FindAction("ChangeMagnetColorToBlue", throwIfNotFound: true);
         m_Player2_ChangeMagnetColorToYellow = m_Player2.FindAction("ChangeMagnetColorToYellow", throwIfNotFound: true);
         m_Player2_ChangeMagnetColorToGreen = m_Player2.FindAction("ChangeMagnetColorToGreen", throwIfNotFound: true);
+        m_Player2_QuickTurn = m_Player2.FindAction("QuickTurn", throwIfNotFound: true);
         // Player 1
         m_Player1 = asset.FindActionMap("Player 1", throwIfNotFound: true);
         m_Player1_Move = m_Player1.FindAction("Move", throwIfNotFound: true);
@@ -1193,6 +1234,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player1_ChangeMagnetColorToBlue = m_Player1.FindAction("ChangeMagnetColorToBlue", throwIfNotFound: true);
         m_Player1_ChangeMagnetColorToYellow = m_Player1.FindAction("ChangeMagnetColorToYellow", throwIfNotFound: true);
         m_Player1_ChangeMagnetColorToGreen = m_Player1.FindAction("ChangeMagnetColorToGreen", throwIfNotFound: true);
+        m_Player1_QuickTurn = m_Player1.FindAction("QuickTurn", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1439,6 +1481,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player2_ChangeMagnetColorToBlue;
     private readonly InputAction m_Player2_ChangeMagnetColorToYellow;
     private readonly InputAction m_Player2_ChangeMagnetColorToGreen;
+    private readonly InputAction m_Player2_QuickTurn;
     public struct Player2Actions
     {
         private @PlayerControls m_Wrapper;
@@ -1448,6 +1491,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @ChangeMagnetColorToBlue => m_Wrapper.m_Player2_ChangeMagnetColorToBlue;
         public InputAction @ChangeMagnetColorToYellow => m_Wrapper.m_Player2_ChangeMagnetColorToYellow;
         public InputAction @ChangeMagnetColorToGreen => m_Wrapper.m_Player2_ChangeMagnetColorToGreen;
+        public InputAction @QuickTurn => m_Wrapper.m_Player2_QuickTurn;
         public InputActionMap Get() { return m_Wrapper.m_Player2; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1472,6 +1516,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @ChangeMagnetColorToGreen.started += instance.OnChangeMagnetColorToGreen;
             @ChangeMagnetColorToGreen.performed += instance.OnChangeMagnetColorToGreen;
             @ChangeMagnetColorToGreen.canceled += instance.OnChangeMagnetColorToGreen;
+            @QuickTurn.started += instance.OnQuickTurn;
+            @QuickTurn.performed += instance.OnQuickTurn;
+            @QuickTurn.canceled += instance.OnQuickTurn;
         }
 
         private void UnregisterCallbacks(IPlayer2Actions instance)
@@ -1491,6 +1538,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @ChangeMagnetColorToGreen.started -= instance.OnChangeMagnetColorToGreen;
             @ChangeMagnetColorToGreen.performed -= instance.OnChangeMagnetColorToGreen;
             @ChangeMagnetColorToGreen.canceled -= instance.OnChangeMagnetColorToGreen;
+            @QuickTurn.started -= instance.OnQuickTurn;
+            @QuickTurn.performed -= instance.OnQuickTurn;
+            @QuickTurn.canceled -= instance.OnQuickTurn;
         }
 
         public void RemoveCallbacks(IPlayer2Actions instance)
@@ -1517,6 +1567,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player1_ChangeMagnetColorToBlue;
     private readonly InputAction m_Player1_ChangeMagnetColorToYellow;
     private readonly InputAction m_Player1_ChangeMagnetColorToGreen;
+    private readonly InputAction m_Player1_QuickTurn;
     public struct Player1Actions
     {
         private @PlayerControls m_Wrapper;
@@ -1526,6 +1577,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @ChangeMagnetColorToBlue => m_Wrapper.m_Player1_ChangeMagnetColorToBlue;
         public InputAction @ChangeMagnetColorToYellow => m_Wrapper.m_Player1_ChangeMagnetColorToYellow;
         public InputAction @ChangeMagnetColorToGreen => m_Wrapper.m_Player1_ChangeMagnetColorToGreen;
+        public InputAction @QuickTurn => m_Wrapper.m_Player1_QuickTurn;
         public InputActionMap Get() { return m_Wrapper.m_Player1; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1550,6 +1602,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @ChangeMagnetColorToGreen.started += instance.OnChangeMagnetColorToGreen;
             @ChangeMagnetColorToGreen.performed += instance.OnChangeMagnetColorToGreen;
             @ChangeMagnetColorToGreen.canceled += instance.OnChangeMagnetColorToGreen;
+            @QuickTurn.started += instance.OnQuickTurn;
+            @QuickTurn.performed += instance.OnQuickTurn;
+            @QuickTurn.canceled += instance.OnQuickTurn;
         }
 
         private void UnregisterCallbacks(IPlayer1Actions instance)
@@ -1569,6 +1624,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @ChangeMagnetColorToGreen.started -= instance.OnChangeMagnetColorToGreen;
             @ChangeMagnetColorToGreen.performed -= instance.OnChangeMagnetColorToGreen;
             @ChangeMagnetColorToGreen.canceled -= instance.OnChangeMagnetColorToGreen;
+            @QuickTurn.started -= instance.OnQuickTurn;
+            @QuickTurn.performed -= instance.OnQuickTurn;
+            @QuickTurn.canceled -= instance.OnQuickTurn;
         }
 
         public void RemoveCallbacks(IPlayer1Actions instance)
@@ -1657,6 +1715,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnChangeMagnetColorToBlue(InputAction.CallbackContext context);
         void OnChangeMagnetColorToYellow(InputAction.CallbackContext context);
         void OnChangeMagnetColorToGreen(InputAction.CallbackContext context);
+        void OnQuickTurn(InputAction.CallbackContext context);
     }
     public interface IPlayer1Actions
     {
@@ -1665,5 +1724,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnChangeMagnetColorToBlue(InputAction.CallbackContext context);
         void OnChangeMagnetColorToYellow(InputAction.CallbackContext context);
         void OnChangeMagnetColorToGreen(InputAction.CallbackContext context);
+        void OnQuickTurn(InputAction.CallbackContext context);
     }
 }

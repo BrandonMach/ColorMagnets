@@ -820,6 +820,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "QuickTurn",
+                    "type": "Button",
+                    "id": "5754be90-1af7-481d-bee4-d61a65805564",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -921,6 +930,17 @@
                     "action": "ChangeMagnetColorToGreen",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "93676ea4-d8c2-4e17-8323-627a72dae880",
+                    "path": "<Keyboard>/numpad3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "QuickTurn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -968,6 +988,15 @@
                     "name": "ChangeMagnetColorToGreen",
                     "type": "Button",
                     "id": "e1261307-22a0-4dba-a9cc-031e1727cf82",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "QuickTurn",
+                    "type": "Button",
+                    "id": "a06739e8-6a69-4e6c-b683-105c0572cd2a",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -1071,6 +1100,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "ChangeMagnetColorToGreen",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b22541fa-6e20-47ae-b6e3-c259bb8d5b7b",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "QuickTurn",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

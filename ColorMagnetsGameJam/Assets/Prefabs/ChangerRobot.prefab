@@ -2790,6 +2790,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2578868073698723341}
+  - component: {fileID: 6333051385099947336}
   m_Layer: 0
   m_Name: YellowFellow
   m_TagString: Untagged
@@ -2838,6 +2839,19 @@ Transform:
   m_Father: {fileID: 524445034076054702}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6333051385099947336
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1009134653351460581}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &1013247726132815505
 GameObject:
   m_ObjectHideFlags: 0
@@ -9153,6 +9167,7 @@ MonoBehaviour:
   _playerIndex: 0
   controller: {fileID: 0}
   _speed: 0
+  _isQuickTurned: 0
 --- !u!54 &5355452364423610782
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13688,6 +13703,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3414134134351735967}
+  - component: {fileID: 6680512534795951049}
   m_Layer: 0
   m_Name: RedFella
   m_TagString: Untagged
@@ -13736,6 +13752,19 @@ Transform:
   m_Father: {fileID: 524445034076054702}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6680512534795951049
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4978379449345699202}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &5111983481754549742
 GameObject:
   m_ObjectHideFlags: 0
@@ -14435,6 +14464,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 583975562890343045}
+  - component: {fileID: 4843062616017557763}
   m_Layer: 0
   m_Name: BlueFella
   m_TagString: Untagged
@@ -14483,6 +14513,19 @@ Transform:
   m_Father: {fileID: 524445034076054702}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4843062616017557763
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5437161358055892461}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &5454481491628843313
 GameObject:
   m_ObjectHideFlags: 0
@@ -19984,6 +20027,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6034545020842352805}
+  - component: {fileID: 4248864721978249960}
   m_Layer: 0
   m_Name: GreenFella
   m_TagString: Untagged
@@ -20032,6 +20076,19 @@ Transform:
   m_Father: {fileID: 524445034076054702}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4248864721978249960
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8019607103801560307}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.444627, z: 1}
+  m_Center: {x: 0, y: 0.7776865, z: 0}
 --- !u!1 &8041929528135396546
 GameObject:
   m_ObjectHideFlags: 0

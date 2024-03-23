@@ -80,7 +80,17 @@ public class Magnet : MagnetColor
     private void Start()
     {
         magnetPoint = GetComponent<Transform>();
-        _currentColorOfMagnet = PolarColor.Red;
+        switch (_movementScript._playerIndex)
+        {
+            case Movement.PlayerIndex.Player1:
+                _currentColorOfMagnet = PolarColor.Red;
+                break;
+            case Movement.PlayerIndex.Player2:
+                _currentColorOfMagnet = PolarColor.Green;
+                break;
+            default:
+                break;
+        }
     }
 
 
@@ -124,14 +134,15 @@ public class Magnet : MagnetColor
         barrelRB.GetComponent<Barrel>().PickedUp = false;
 
         barrelRB.constraints = RigidbodyConstraints.FreezePositionY;
-        barrelRB.AddExplosionForce(1000f, _movementScript.gameObject.transform.position , 10f);
+        barrelRB.AddExplosionForce(3000f, _movementScript.gameObject.transform.position , 10f);
         
 
 
-        barrelRB.velocity = _movementScript.gameObject.transform.position * 30f * Time.deltaTime;
+       // barrelRB.velocity = _movementScript.gameObject.transform.position * 30f * Time.deltaTime;
         barrelRB.useGravity = true;
         barrelRB.GetComponent<BoxCollider>().isTrigger = false;
-        
+        _movementScript.ChangeMoveSpeed(_movementScript.DefaultSpeed());
+
     }
 
 
@@ -139,23 +150,15 @@ public class Magnet : MagnetColor
 
     private void OnTriggerEnter(Collider other)
     {
-        //Tag right Color barrel
-        var checkBarrel = other.GetComponent<Barrel>();
-
-        //Only pick up barrels that are not already picked up and have the same color 
-        if (other.CompareTag("Barrel") && !checkBarrel.PickedUp && checkBarrel.BarrelColor == _currentColorOfMagnet)
-        {
-            MagnetListRB.Add(other.GetComponent<Rigidbody>());
-            checkBarrel.PickedUp = true;
-            other.GetComponent<Rigidbody>().useGravity = false;
-            other.GetComponent<BoxCollider>().isTrigger = true;
-            
-
-            _movementScript.ReduceSpeed((10 - (0.7f * MagnetListRB.Count)));
-        }
+        Magnetize(other);
     }
 
     private void OnTriggerStay(Collider other)
+    {
+        Magnetize(other);
+    }
+
+    private void Magnetize(Collider other)
     {
         //Tag right Color barrel
         var checkBarrel = other.GetComponent<Barrel>();
@@ -167,9 +170,9 @@ public class Magnet : MagnetColor
             checkBarrel.PickedUp = true;
             other.GetComponent<Rigidbody>().useGravity = false;
             other.GetComponent<BoxCollider>().isTrigger = true;
-            
 
-            _movementScript.ReduceSpeed((10 - (0.7f * MagnetListRB.Count)));
+
+            _movementScript.ChangeMoveSpeed(_movementScript.DefaultSpeed() - (170 * MagnetListRB.Count));
         }
     }
 

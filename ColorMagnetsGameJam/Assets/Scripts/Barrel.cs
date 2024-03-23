@@ -16,7 +16,7 @@ public class Barrel : MagnetColor
     void Start()
     {
         _meshRenderer = GetComponentInChildren<MeshRenderer>();
-        BarrelColor = (PolarColor)Random.Range(0, 3);
+        BarrelColor = (PolarColor)Random.Range(0, 4);
         switch (BarrelColor)
         {
             case PolarColor.Red:
