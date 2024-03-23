@@ -48,4 +48,12 @@ public class Barrel : MagnetColor
         transform.position = player.position + player.TransformDirection(offset);
         transform.rotation = player.rotation;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (!PickedUp)
+        {
+            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        }
+    }
 }

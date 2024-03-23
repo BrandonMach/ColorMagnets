@@ -123,11 +123,12 @@ public class Magnet : MagnetColor
     {
         barrelRB.GetComponent<Barrel>().PickedUp = false;
 
+        barrelRB.constraints = RigidbodyConstraints.FreezePositionY;
+        barrelRB.AddExplosionForce(1000f, _movementScript.gameObject.transform.position , 10f);
+        
 
-         barrelRB.AddExplosionForce(500f, _movementScript.gameObject.transform.position , 10f);
-        
-        
-        //barrelRB.velocity = _movementScript.gameObject.transform.position * 30f * Time.deltaTime;
+
+        barrelRB.velocity = _movementScript.gameObject.transform.position * 30f * Time.deltaTime;
         barrelRB.useGravity = true;
         barrelRB.GetComponent<BoxCollider>().isTrigger = false;
         

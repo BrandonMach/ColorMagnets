@@ -67,7 +67,7 @@ public class Movement : MonoBehaviour
     void Update()
     {
 
-
+        GetComponent<Rigidbody>().AddForce(Vector3.down);
    
         move = new Vector3(moveInput.ReadValue<Vector2>()[0], 0, moveInput.ReadValue<Vector2>()[1]);
 
