@@ -9,7 +9,7 @@ public class Magnet : MagnetColor
     Transform magnetPoint;
 
     public List<Rigidbody> MagnetListRB;
-    Movement _movementScript;
+    PlayerScript _movementScript;
   
     [SerializeField] PolarColor _currentColorOfMagnet;
 
@@ -26,9 +26,11 @@ public class Magnet : MagnetColor
     private InputAction changeToYellow;
     private InputAction changeToGreen;
 
+
+    [SerializeField] float _totalWeight;
     private void Awake()
     {
-        _movementScript = GetComponentInParent<Movement>();
+        _movementScript = GetComponentInParent<PlayerScript>();
         playerControls = new PlayerControls();
     }
 
@@ -37,13 +39,13 @@ public class Magnet : MagnetColor
 
         switch (_movementScript._playerIndex)
         {
-            case Movement.PlayerIndex.Player1:
+            case PlayerScript.PlayerIndex.Player1:
                 changeToRed = playerControls.Player1.ChangeMagnetColorToRed;
                 changeToBlue = playerControls.Player1.ChangeMagnetColorToBlue;
                 changeToYellow = playerControls.Player1.ChangeMagnetColorToYellow;
                 changeToGreen = playerControls.Player1.ChangeMagnetColorToGreen;
                 break;
-            case Movement.PlayerIndex.Player2:
+            case PlayerScript.PlayerIndex.Player2:
                 changeToRed = playerControls.Player2.ChangeMagnetColorToRed;
                 changeToBlue = playerControls.Player2.ChangeMagnetColorToBlue;
                 changeToYellow = playerControls.Player2.ChangeMagnetColorToYellow;
@@ -82,10 +84,10 @@ public class Magnet : MagnetColor
         magnetPoint = GetComponent<Transform>();
         switch (_movementScript._playerIndex)
         {
-            case Movement.PlayerIndex.Player1:
+            case PlayerScript.PlayerIndex.Player1:
                 _currentColorOfMagnet = PolarColor.Red;
                 break;
-            case Movement.PlayerIndex.Player2:
+            case PlayerScript.PlayerIndex.Player2:
                 _currentColorOfMagnet = PolarColor.Green;
                 break;
             default:
@@ -119,7 +121,7 @@ public class Magnet : MagnetColor
 
         for (int i = MagnetListRB.Count - 1; i >= 0; i--)
         {
-            if (MagnetListRB[i].GetComponent<Barrel>().BarrelColor != _currentColorOfMagnet)
+            if (MagnetListRB[i].GetComponent<MagneticItems>().MagnetizeColor != _currentColorOfMagnet)
             {
                 RepelBarrel(MagnetListRB[i]);
                 MagnetListRB.RemoveAt(i);
@@ -127,21 +129,24 @@ public class Magnet : MagnetColor
             }
                 
         }
+
+        
     }
 
-    private void RepelBarrel(Rigidbody barrelRB)
+    private void RepelBarrel(Rigidbody MagnetizeItemBR)
     {
-        barrelRB.GetComponent<Barrel>().PickedUp = false;
+        MagnetizeItemBR.GetComponent<MagneticItems>().PickedUp = false;
 
-        barrelRB.constraints = RigidbodyConstraints.FreezePositionY;
-        barrelRB.AddExplosionForce(3000f, _movementScript.gameObject.transform.position , 10f);
-        
+        MagnetizeItemBR.constraints = RigidbodyConstraints.FreezePositionY;
+        MagnetizeItemBR.AddExplosionForce(3000f, _movementScript.gameObject.transform.position , 10f);
 
 
-       // barrelRB.velocity = _movementScript.gameObject.transform.position * 30f * Time.deltaTime;
-        barrelRB.useGravity = true;
-        barrelRB.GetComponent<BoxCollider>().isTrigger = false;
-        _movementScript.ChangeMoveSpeed(_movementScript.DefaultSpeed());
+
+        // MagnetizeItemBR.velocity = _movementScript.gameObject.transform.position * 30f * Time.deltaTime;
+        MagnetizeItemBR.useGravity = true;
+        MagnetizeItemBR.GetComponent<BoxCollider>().isTrigger = false;
+        _totalWeight = 0;
+      //  _movementScript.ChangeMoveSpeed(_movementScript.DefaultSpeed());
 
     }
 
@@ -161,19 +166,22 @@ public class Magnet : MagnetColor
     private void Magnetize(Collider other)
     {
         //Tag right Color barrel
-        var checkBarrel = other.GetComponent<Barrel>();
+        var MagnetizeItem = other.GetComponent<MagneticItems>();
 
         //Only pick up barrels that are not already picked up and have the same color 
-        if (other.CompareTag("Barrel") && !checkBarrel.PickedUp && checkBarrel.BarrelColor == _currentColorOfMagnet)
+        if (other.CompareTag("Magnetic") && !MagnetizeItem.PickedUp && MagnetizeItem.MagnetizeColor == _currentColorOfMagnet)
         {
             MagnetListRB.Add(other.GetComponent<Rigidbody>());
-            checkBarrel.PickedUp = true;
+            MagnetizeItem.PickedUp = true;
             other.GetComponent<Rigidbody>().useGravity = false;
             other.GetComponent<BoxCollider>().isTrigger = true;
 
+            _totalWeight += MagnetizeItem.GetMagneticItemWeight();
 
-            _movementScript.ChangeMoveSpeed(_movementScript.DefaultSpeed() - (170 * MagnetListRB.Count));
+            _movementScript.ChangeMoveSpeed(_movementScript.DefaultSpeed() - (60 * _totalWeight));
         }
+
+       
     }
 
 
