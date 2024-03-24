@@ -131,22 +131,17 @@ public class MainMenuRobotScript : MonoBehaviour
 
             foreach (var animator in _animators)
             {
-                //animator.SetBool("Moving", true);
-                if(animator.isActiveAndEnabled == true)
-                {
-                    animator.SetFloat("Moving", 1);
-                }
-                
+                animator.SetFloat("Moving", 1);
+
             }
         }
         else
         {
             foreach (var animator in _animators)
             {
-                if (animator.isActiveAndEnabled == true)
-                {
+                
                     animator.SetFloat("Moving", -2);
-                }
+                
             }
         }
     }
