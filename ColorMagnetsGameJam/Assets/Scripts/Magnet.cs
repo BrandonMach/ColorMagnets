@@ -12,6 +12,11 @@ public class Magnet : MagnetColor
     PlayerScript _movementScript;
   
     [SerializeField] PolarColor _currentColorOfMagnet;
+    public PolarColor GetMagnetColor()
+    {
+        return _currentColorOfMagnet;
+    }
+   
 
     [SerializeField] GameObject[] _allTheFellas = new GameObject[4];
 

@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     static GameManager _instance;
 
     public static GameManager Instance { get => _instance; set => _instance = value; }
+
+    [SerializeField] AudioClip _mainTheme;
     
 
     private void Awake()
@@ -27,6 +29,8 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
+
+
     }
 
     void Start()
@@ -34,6 +38,9 @@ public class GameManager : MonoBehaviour
         _winThreashold = 7;
         _winnerTextgameObject.SetActive(false);
         _playerArray = FindObjectsOfType<PlayerScript>();
+
+
+        StartCoroutine(StartAudio());
     }
 
     // Update is called once per frame
@@ -61,5 +68,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    
+
+    IEnumerator StartAudio()
+    {
+        AudioSource audio = GetComponent<AudioSource>();
+
+        audio.Play();
+        yield return new WaitForSeconds(audio.clip.length);
+        foreach (var player in _playerArray)
+        {
+            player.CanMove = true;
+        }
+        audio.clip = _mainTheme;
+        audio.Play();
+        audio.loop = true;
+    }
+
+
 }

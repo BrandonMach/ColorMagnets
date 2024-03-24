@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using TMPro;
 
-public class PlayerScript : MonoBehaviour
+public class MainMenuRobotScript : MonoBehaviour
 {
     public enum PlayerIndex
     {
@@ -16,20 +15,12 @@ public class PlayerScript : MonoBehaviour
     public CharacterController controller;
     [SerializeField] float _speed;
 
-
-    [Header("Score")]
-    float _score;
-    public float GetPlayerScore()
-    {
-        return _score;
-    }
-    [SerializeField] TextMeshProUGUI _ScoreText;
     public float DefaultSpeed()
     {
         return 1000f;
     }
 
-    public bool CanMove;
+
     Vector3 move;
 
 
@@ -46,7 +37,7 @@ public class PlayerScript : MonoBehaviour
     private void Awake()
     {
         playerControls = new PlayerControls();
-        
+
     }
 
     private void OnEnable()
@@ -57,13 +48,13 @@ public class PlayerScript : MonoBehaviour
             case PlayerIndex.Player1:
                 moveInput = playerControls.Player1.Move;
                 quickTurn = playerControls.Player1.QuickTurn;
-                transform.position = new Vector3(-20, 0, 20);
+                transform.position = new Vector3(-39, 0, -18);
 
                 break;
             case PlayerIndex.Player2:
                 moveInput = playerControls.Player2.Move;
                 quickTurn = playerControls.Player2.QuickTurn;
-                transform.position = new Vector3(20, 0, -20);
+                transform.position = new Vector3(-28, 0, -18);
                 break;
             default:
                 break;
@@ -91,7 +82,7 @@ public class PlayerScript : MonoBehaviour
 
     }
 
-    
+
 
 
 
@@ -99,50 +90,20 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       _ScoreText.text=  "Player "+((int)_playerIndex+1) +": " + _score +"/7";
 
-        if (CanMove)
-        {
-            Movement();
-        }
+
+        Movement();
 
         RotationAndAnimation();
-       
-
-
-        //Turn around to better aim
-       
-        //if(_isQuickTurned)
-        //{
-        //    move = -move; 
-        //    Quaternion toRotation = Quaternion.LookRotation(move, Vector3.up);
-        //    transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, 1080f * Time.deltaTime);
-
-        //}
-
-        
-
-
-
 
     }
 
-
-    //reduce speed with more barrels
-    public void ChangeMoveSpeed(float newSpeed)
-    {
-        if(newSpeed > 80)
-        {
-            _speed = newSpeed;
-        }
-        
-    }
 
 
     private void PerformeQuickTurn(InputAction.CallbackContext context)
     {
         _isQuickTurned = true;
-        Debug.Log( _isQuickTurned+ "hjbk");
+        Debug.Log(_isQuickTurned + "hjbk");
     }
     private void CancelQuickTurn(InputAction.CallbackContext context)
     {
@@ -150,19 +111,7 @@ public class PlayerScript : MonoBehaviour
         Debug.Log("hjbk");
     }
 
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        if(hit.gameObject.CompareTag("Collectable"))
-        {
-            Debug.Log("Item Collected");
-            Destroy(hit.gameObject);
-        }
-        
-    }
-    public void AddScore()
-    {
-        _score++;
-    }
+    
 
     private void Movement()
     {
@@ -183,11 +132,11 @@ public class PlayerScript : MonoBehaviour
             foreach (var animator in _animators)
             {
                 //animator.SetBool("Moving", true);
-                if (animator.isActiveAndEnabled == true)
+                if(animator.isActiveAndEnabled == true)
                 {
                     animator.SetFloat("Moving", 1);
                 }
-
+                
             }
         }
         else
@@ -201,8 +150,5 @@ public class PlayerScript : MonoBehaviour
             }
         }
     }
-
-
-
 
 }
