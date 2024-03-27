@@ -2118,6 +2118,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &925406751
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 925406752}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &925406752
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925406751}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -147.01335, y: -117.2654, z: -2.4373534}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &997632743
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2125,6 +2156,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3947503481457291337, guid: 78b87c02686b9f34781325e7edc86778, type: 3}
+      propertyPath: _arcadeControlsSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 55eef5e8ef4eb764d8552d46d8504d51, type: 2}
     - target: {fileID: 4544025444405964326, guid: 78b87c02686b9f34781325e7edc86778, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -3824,6 +3859,10 @@ PrefabInstance:
       propertyPath: m_DefaultActionMap
       value: e0a30ad9-2ac2-4041-81aa-3448e0a4e974
       objectReference: {fileID: 0}
+    - target: {fileID: 3947503481457291337, guid: 78b87c02686b9f34781325e7edc86778, type: 3}
+      propertyPath: _arcadeControlsSO
+      value: 
+      objectReference: {fileID: 11400000, guid: ee94beb507edcfa48a2d6654343dc7f6, type: 2}
     - target: {fileID: 4544025444405964326, guid: 78b87c02686b9f34781325e7edc86778, type: 3}
       propertyPath: m_Enabled
       value: 0

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+//using UnityEngine.InputSystem;
 
 public class MainMenuRobotScript : MonoBehaviour
 {
@@ -25,10 +25,12 @@ public class MainMenuRobotScript : MonoBehaviour
 
 
     [Header("New input system")]
-    public PlayerControls playerControls;
-    private InputAction moveInput;
-    [SerializeField] bool _isQuickTurned;
-    private InputAction quickTurn;
+    //public PlayerControls playerControls;
+    //private InputAction moveInput;
+    //[SerializeField] bool _isQuickTurned;
+    //private InputAction quickTurn;
+
+   
 
 
     [SerializeField] Animator[] _animators;
@@ -36,7 +38,7 @@ public class MainMenuRobotScript : MonoBehaviour
 
     private void Awake()
     {
-        playerControls = new PlayerControls();
+        //playerControls = new PlayerControls();
 
     }
 
@@ -46,32 +48,29 @@ public class MainMenuRobotScript : MonoBehaviour
         switch (_playerIndex)
         {
             case PlayerIndex.Player1:
-                moveInput = playerControls.Player1.Move;
-                quickTurn = playerControls.Player1.QuickTurn;
+                //moveInput = playerControls.Player1.Move;
+                //quickTurn = playerControls.Player1.QuickTurn;
                 transform.position = new Vector3(-39, 0, -18);
 
                 break;
             case PlayerIndex.Player2:
-                moveInput = playerControls.Player2.Move;
-                quickTurn = playerControls.Player2.QuickTurn;
+                //moveInput = playerControls.Player2.Move;
+                //quickTurn = playerControls.Player2.QuickTurn;
                 transform.position = new Vector3(-28, 0, -18);
                 break;
             default:
                 break;
         }
 
-        moveInput.Enable();
-        quickTurn.Enable();
-
-        quickTurn.performed += PerformeQuickTurn;
-        quickTurn.canceled += CancelQuickTurn;
+        //moveInput.Enable();
+      
 
     }
 
-    private void OnDisable()
-    {
-        moveInput.Disable();
-    }
+    //private void OnDisable()
+    //{
+    //    moveInput.Disable();
+    //}
 
 
 
@@ -91,31 +90,24 @@ public class MainMenuRobotScript : MonoBehaviour
     void Update()
     {
 
-
         Movement();
 
         RotationAndAnimation();
 
     }
 
-
-
-    private void PerformeQuickTurn(InputAction.CallbackContext context)
-    {
-        _isQuickTurned = true;
-        Debug.Log(_isQuickTurned + "hjbk");
-    }
-    private void CancelQuickTurn(InputAction.CallbackContext context)
-    {
-        _isQuickTurned = false;
-        Debug.Log("hjbk");
-    }
-
-    
-
     private void Movement()
     {
-        move = new Vector3(moveInput.ReadValue<Vector2>()[0], 0, moveInput.ReadValue<Vector2>()[1]);
+        //move = new Vector3(moveInput.ReadValue<Vector2>()[0], 0, moveInput.ReadValue<Vector2>()[1]);
+        if(_playerIndex == PlayerIndex.Player1)
+        {
+            move = new Vector3(Input.GetAxis("WASDHorizontal"), 0, Input.GetAxis("WASDVertical"));
+        }
+        if (_playerIndex == PlayerIndex.Player2)
+        {
+            move = new Vector3(Input.GetAxis("ArrowHorizontal"), 0, Input.GetAxis("ArrowVertical"));
+        }
+
 
         controller.SimpleMove(move * Time.deltaTime * _speed);
     }

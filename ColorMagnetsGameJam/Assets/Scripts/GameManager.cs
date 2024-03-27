@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] PlayerScript[] _playerArray;
     [SerializeField] GameObject _winnerTextgameObject;
+    
     int _winThreashold;
 
     bool GameOver;
@@ -20,6 +21,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get => _instance; set => _instance = value; }
 
     [SerializeField] AudioClip _mainTheme;
+    public bool StartGame;
     
 
     private void Awake()
@@ -75,6 +77,7 @@ public class GameManager : MonoBehaviour
 
         audio.Play();
         yield return new WaitForSeconds(audio.clip.length);
+        StartGame = true;
         foreach (var player in _playerArray)
         {
             player.CanMove = true;

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+//using UnityEngine.InputSystem;
 using TMPro;
 
 public class PlayerScript : MonoBehaviour
@@ -34,10 +34,9 @@ public class PlayerScript : MonoBehaviour
 
 
     [Header("New input system")]
-    public PlayerControls playerControls;
-    private InputAction moveInput;
+    //public PlayerControls playerControls;
+    //private InputAction moveInput;
     [SerializeField] bool _isQuickTurned;
-    private InputAction quickTurn;
 
 
     [SerializeField] Animator[] _animators;
@@ -45,7 +44,7 @@ public class PlayerScript : MonoBehaviour
 
     private void Awake()
     {
-        playerControls = new PlayerControls();
+       // playerControls = new PlayerControls();
         
     }
 
@@ -55,31 +54,27 @@ public class PlayerScript : MonoBehaviour
         switch (_playerIndex)
         {
             case PlayerIndex.Player1:
-                moveInput = playerControls.Player1.Move;
-                quickTurn = playerControls.Player1.QuickTurn;
+               // moveInput = playerControls.Player1.Move;
+               
                 transform.position = new Vector3(-20, 0, 20);
 
                 break;
             case PlayerIndex.Player2:
-                moveInput = playerControls.Player2.Move;
-                quickTurn = playerControls.Player2.QuickTurn;
+               // moveInput = playerControls.Player2.Move;
+             
                 transform.position = new Vector3(20, 0, -20);
                 break;
             default:
                 break;
         }
 
-        moveInput.Enable();
-        quickTurn.Enable();
-
-        quickTurn.performed += PerformeQuickTurn;
-        quickTurn.canceled += CancelQuickTurn;
+       // moveInput.Enable();
 
     }
 
     private void OnDisable()
     {
-        moveInput.Disable();
+        //moveInput.Disable();
     }
 
 
@@ -99,7 +94,7 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       _ScoreText.text=  "Player "+((int)_playerIndex+1) +": " + _score +"/7";
+       _ScoreText.text=  ((int)_playerIndex+1 )+": " + _score +"/7";
 
         if (CanMove)
         {
@@ -107,21 +102,7 @@ public class PlayerScript : MonoBehaviour
         }
 
         RotationAndAnimation();
-       
-
-
-        //Turn around to better aim
-       
-        //if(_isQuickTurned)
-        //{
-        //    move = -move; 
-        //    Quaternion toRotation = Quaternion.LookRotation(move, Vector3.up);
-        //    transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, 1080f * Time.deltaTime);
-
-        //}
-
-        
-
+      
 
 
 
@@ -139,17 +120,6 @@ public class PlayerScript : MonoBehaviour
     }
 
 
-    private void PerformeQuickTurn(InputAction.CallbackContext context)
-    {
-        _isQuickTurned = true;
-        Debug.Log( _isQuickTurned+ "hjbk");
-    }
-    private void CancelQuickTurn(InputAction.CallbackContext context)
-    {
-        _isQuickTurned = false;
-        Debug.Log("hjbk");
-    }
-
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if(hit.gameObject.CompareTag("Collectable"))
@@ -166,7 +136,14 @@ public class PlayerScript : MonoBehaviour
 
     private void Movement()
     {
-        move = new Vector3(moveInput.ReadValue<Vector2>()[0], 0, moveInput.ReadValue<Vector2>()[1]);
+        if (_playerIndex == PlayerIndex.Player1)
+        {
+            move = new Vector3(Input.GetAxis("WASDHorizontal"), 0, Input.GetAxis("WASDVertical"));
+        }
+        if (_playerIndex == PlayerIndex.Player2)
+        {
+            move = new Vector3(Input.GetAxis("ArrowHorizontal"), 0, Input.GetAxis("ArrowVertical"));
+        }
 
         controller.SimpleMove(move * Time.deltaTime * _speed);
     }

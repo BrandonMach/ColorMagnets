@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Magnet : MagnetColor
 {
@@ -22,62 +21,66 @@ public class Magnet : MagnetColor
 
     int playerIndex;
 
-    [Header("New input system")]
-    //generated C# script from Player Input action
-    public PlayerControls playerControls;
+    //[Header("New input system")]
+    ////generated C# script from Player Input action
+    //public PlayerControls playerControls;
 
-    private InputAction changeToRed;
-    private InputAction changeToBlue;
-    private InputAction changeToYellow;
-    private InputAction changeToGreen;
+    //private InputAction changeToRed;
+    //private InputAction changeToBlue;
+    //private InputAction changeToYellow;
+    //private InputAction changeToGreen;
+
+
+    [Header("Old input for Arcade")]
+    [SerializeField] ArcadeControlsSO _arcadeControlsSO;
 
 
     [SerializeField] float _totalWeight;
     private void Awake()
     {
         _movementScript = GetComponentInParent<PlayerScript>();
-        playerControls = new PlayerControls();
+       // playerControls = new PlayerControls();
     }
 
-    private void OnEnable()
-    {
+    //private void OnEnable()
+    //{
 
-        switch (_movementScript._playerIndex)
-        {
-            case PlayerScript.PlayerIndex.Player1:
-                changeToRed = playerControls.Player1.ChangeMagnetColorToRed;
-                changeToBlue = playerControls.Player1.ChangeMagnetColorToBlue;
-                changeToYellow = playerControls.Player1.ChangeMagnetColorToYellow;
-                changeToGreen = playerControls.Player1.ChangeMagnetColorToGreen;
-                break;
-            case PlayerScript.PlayerIndex.Player2:
-                changeToRed = playerControls.Player2.ChangeMagnetColorToRed;
-                changeToBlue = playerControls.Player2.ChangeMagnetColorToBlue;
-                changeToYellow = playerControls.Player2.ChangeMagnetColorToYellow;
-                changeToGreen = playerControls.Player2.ChangeMagnetColorToGreen;
-                break;
-            default:
-                break;
-        }
-        changeToRed.Enable();
-        changeToBlue.Enable(); 
-        changeToYellow.Enable(); 
-        changeToGreen.Enable();
+    //    switch (_movementScript._playerIndex)
+    //    {
+    //        case PlayerScript.PlayerIndex.Player1:
+    //            changeToRed = playerControls.Player1.ChangeMagnetColorToRed;
+    //            changeToBlue = playerControls.Player1.ChangeMagnetColorToBlue;
+    //            changeToYellow = playerControls.Player1.ChangeMagnetColorToYellow;
+    //            changeToGreen = playerControls.Player1.ChangeMagnetColorToGreen;
+    //            break;
+    //        case PlayerScript.PlayerIndex.Player2:
+    //            changeToRed = playerControls.Player2.ChangeMagnetColorToRed;
+    //            changeToBlue = playerControls.Player2.ChangeMagnetColorToBlue;
+    //            changeToYellow = playerControls.Player2.ChangeMagnetColorToYellow;
+    //            changeToGreen = playerControls.Player2.ChangeMagnetColorToGreen;
+    //            break;
+    //        default:
+    //            break;
+    //    }
+    //    changeToRed.Enable();
+    //    changeToBlue.Enable(); 
+    //    changeToYellow.Enable(); 
+    //    changeToGreen.Enable();
 
-        changeToRed.performed += ChangeToRed;
-        changeToBlue.performed += ChangeToBlue;
-        changeToYellow.performed += ChangeToYellow;
-        changeToGreen.performed += ChangeToGreen;
+    //    changeToRed.performed += ChangeToRed;
+    //    changeToBlue.performed += ChangeToBlue;
+    //    changeToYellow.performed += ChangeToYellow;
+    //    changeToGreen.performed += ChangeToGreen;
 
-    }
+    //}
 
-    private void OnDisable()
-    {
-        changeToRed.Disable();
-        changeToBlue.Disable();
-        changeToYellow.Disable();
-        changeToGreen.Disable();
-    }
+    //private void OnDisable()
+    //{
+    //    changeToRed.Disable();
+    //    changeToBlue.Disable();
+    //    changeToYellow.Disable();
+    //    changeToGreen.Disable();
+    //}
 
 
 
@@ -104,6 +107,8 @@ public class Magnet : MagnetColor
 
     private void FixedUpdate()
     {
+
+        ChangeColorArcadeControls();
         for (int i = 0; i < _allTheFellas.Length; i++)
         {
             _allTheFellas[i].SetActive(i == (int)_currentColorOfMagnet);
@@ -190,27 +195,50 @@ public class Magnet : MagnetColor
     }
 
 
+    public void ChangeColorArcadeControls()
+    {
+        if (Input.GetKey(_arcadeControlsSO.ChangeRed))
+        {
+            _currentColorOfMagnet = PolarColor.Red;
+        }
 
+        if (Input.GetKey(_arcadeControlsSO.ChangeBlue))
+        {
+            _currentColorOfMagnet = PolarColor.Blue;
+        }
+
+        if (Input.GetKey(_arcadeControlsSO.ChangeYellow))
+        {
+            _currentColorOfMagnet = PolarColor.Yellow;
+        }
+
+        if (Input.GetKey(_arcadeControlsSO.ChangeGreen))
+        {
+            _currentColorOfMagnet = PolarColor.Green;
+        }
+
+
+    }
 
 
     #region Magnet Color Switch 
-    private void ChangeToRed(InputAction.CallbackContext context)
-    {
-        _currentColorOfMagnet = PolarColor.Red;
+    //private void ChangeToRed(InputAction.CallbackContext context)
+    //{
+    //    //_currentColorOfMagnet = PolarColor.Red;
         
-    }
-    private void ChangeToBlue(InputAction.CallbackContext context)
-    {
-        _currentColorOfMagnet = PolarColor.Blue;
-    }
-    private void ChangeToYellow(InputAction.CallbackContext context)
-    {
-        _currentColorOfMagnet = PolarColor.Yellow;
-    }
-    private void ChangeToGreen(InputAction.CallbackContext context)
-    {
-        _currentColorOfMagnet = PolarColor.Green;
-    }
+    //}
+    //private void ChangeToBlue(InputAction.CallbackContext context)
+    //{
+    //   // _currentColorOfMagnet = PolarColor.Blue;
+    //}
+    //private void ChangeToYellow(InputAction.CallbackContext context)
+    //{
+    //   // _currentColorOfMagnet = PolarColor.Yellow;
+    //}
+    //private void ChangeToGreen(InputAction.CallbackContext context)
+    //{
+    //  //  _currentColorOfMagnet = PolarColor.Green;
+    //}
 
     #endregion
 }
